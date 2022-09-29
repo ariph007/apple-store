@@ -1,22 +1,35 @@
 import { ShoppingCartIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { urlFor } from "../sanity";
+import { addToBasket } from "../redux/basketSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 interface productProps {
   product: Product;
 }
 
-const addItemToBasket = () => {};
-
 function Product({ product }: productProps) {
+  const dispatch = useDispatch();
+
+  const addItemToBasket = () => {
+    dispatch(addToBasket(product));
+
+    toast.success(`${product.title} added to basket`, {
+      position: "bottom-center",
+    });
+  };
+
   return (
     <div
       className="flex h-fit w-[320px] select-none flex-col space-y-3 rounded-xl
     bg-[#35383C] p-8 md:h-[500px] md:w-[400px] md:p-10"
     >
+      <Toaster />
       <div className="relative h-64 w-full md:h-72">
         <Image
+          alt={product.title}
           src={urlFor(product.image[0]).url()}
           layout="fill"
           objectFit="contain"

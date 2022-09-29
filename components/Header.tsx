@@ -6,9 +6,13 @@ import {
   ShoppingBagIcon,
   UserIcon,
 } from "@heroicons/react/outline";
+import { useSelector } from "react-redux";
+import { selectBasketItems } from "../redux/basketSlice";
 
 function Header(): JSX.Element {
   const session = false;
+
+  const items = useSelector(selectBasketItems);
   return (
     <div>
       <header className="sticky top-0 z-30 flex w-full items-center justify-between bg-[#E7ECEE] p-4">
@@ -16,6 +20,7 @@ function Header(): JSX.Element {
           <Link href={"/"}>
             <div className="relative h-10 w-5 cursor-pointer opacity-75 transition hover:opacity-100 ">
               <Image
+                alt="Apple Store Logo"
                 src="https://rb.gy/vsvv2o"
                 layout="fill"
                 objectFit="contain"
@@ -24,10 +29,18 @@ function Header(): JSX.Element {
           </Link>
         </div>
         <div className="hidden flex-1 items-center justify-center space-x-8 md:flex">
-          <a className="headerLink">Product</a>
-          <a className="headerLink">Explore</a>
-          <a className="headerLink">Support</a>
-          <a className="headerLink">Busines</a>
+          <a className="headerLink" href="/">
+            Product
+          </a>
+          <a className="headerLink" href="/">
+            Explore
+          </a>
+          <a className="headerLink" href="/">
+            Support
+          </a>
+          <a className="headerLink" href="/">
+            Busines
+          </a>
         </div>
         <div className="flex items-center justify-center gap-x-4 md:w-1/5">
           <SearchIcon className="headerIcon" />
@@ -37,7 +50,7 @@ function Header(): JSX.Element {
                 className="absolute -right-1 -top-1 z-50 flex h-4 w-4 items-center justify-center
             rounded-full bg-gradient-to-r from-pink-500 to-violet-500 text-[10px] text-white"
               >
-                5
+                {items.length}
               </span>
               <ShoppingBagIcon className="headerIcon" />
             </div>

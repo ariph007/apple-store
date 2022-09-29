@@ -1,6 +1,7 @@
 import { Tab } from "@headlessui/react";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
+import Basket from "../components/Basket";
 import Header from "../components/Header";
 import Landing from "../components/Landing";
 import Product from "../components/Product";
@@ -29,7 +30,7 @@ const Home = ({ categories, products }: homeProps) => {
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
           />
-          <meta name="description" content="description of your project" />
+          <meta name="description" content="Apple store App" />
           <meta name="theme-color" content="#000" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="shortcut icon" href="/favicon.ico" />
@@ -39,6 +40,7 @@ const Home = ({ categories, products }: homeProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <Basket />
       <main className="relative h-[200vh] bg-[#E7ECEE]">
         <Landing />
       </main>
