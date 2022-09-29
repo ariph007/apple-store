@@ -46,11 +46,9 @@ export const selectBasketItemWithId = (state: RootState, id: string) => {
   state.basket.items.filter((item: Product) => item._id === id);
 };
 
-export const selectBasketTotal = (state: RootState) => {
+export const selectBasketTotal = (state: RootState) =>
   state.basket.items.reduce(
     (total: number, item: Product) => (total += item.price),
     0
   );
-};
-
 export default basketSlice.reducer;
